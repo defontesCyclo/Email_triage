@@ -1,0 +1,3034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>F&B Email Triage — Phase 1 Kickoff</title>
+<style>
+  :root {
+    /* F&B brand — core */
+    --fb-black: #000000;
+    --fb-red: #E31B23;
+    --fb-red-dark: #B91219;
+    --fb-white: #FFFFFF;
+
+    /* F&B brand — extended (active, approved) */
+    --fb-denim: #2C3154;
+    --fb-slate: #8B97AD;
+    --fb-citron: #9CAF43;
+    --fb-plum: #830053;
+    --fb-smoke: #BFBAA4;
+
+    /* Semantic */
+    --fb-text: #000000;
+    --fb-text-muted: #595959;
+    --fb-text-soft: #8a8a85;
+    --fb-bg: #ffffff;
+    --fb-bg-soft: #f7f7f5;
+    --fb-bg-cooler: #f4f5f8;
+    --fb-border: #e5e5e0;
+    --fb-border-strong: #c8c8c0;
+
+    /* Section accents — pulled from approved palette */
+    --acc-cohort: var(--fb-slate);
+    --acc-heard: var(--fb-denim);
+    --acc-build: var(--fb-citron);
+    --acc-shape: var(--fb-plum);
+    --acc-input: var(--fb-plum);
+    --acc-moving: var(--fb-denim);
+    --acc-next: var(--fb-slate);
+
+    --fb-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--fb-font);
+    background: var(--fb-white);
+    color: var(--fb-text);
+    line-height: 1.55;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* HERO HEADER — F&B page-header signature */
+  header.hero {
+    background: var(--fb-white);
+    padding: 38px 0 0;
+  }
+  header.hero h1 {
+    font-family: var(--fb-font);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--fb-black);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  header.hero .fb-rule {
+    border: 0;
+    height: 1.5px;
+    background: var(--fb-red);
+    margin: 0 0 12px;
+  }
+  header.hero .meta {
+    font-size: 12px;
+    color: var(--fb-text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* MANDATE HERO — large, prominent, one-time at top */
+  .mandate-hero {
+    background: var(--fb-white);
+    padding: 36px 0 32px;
+  }
+  .mandate-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-red);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .mandate-thesis {
+    font-size: 22px;
+    color: var(--fb-black);
+    font-weight: 400;
+    line-height: 1.4;
+    max-width: 960px;
+    margin-bottom: 28px;
+  }
+  .mandate-thesis strong {
+    color: var(--fb-black);
+    font-weight: 700;
+    border-bottom: 2px solid var(--fb-red);
+    padding-bottom: 1px;
+  }
+  .objectives-big {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .objective-big {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    border-top: 3px solid var(--fb-red);
+    padding: 18px 20px;
+    min-height: 130px;
+  }
+  .objective-big .obj-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-red);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .objective-big .obj-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .objective-big .obj-desc {
+    font-size: 12px;
+    color: var(--fb-text-muted);
+    line-height: 1.5;
+  }
+
+  /* STICKY COMBINED BAR — mandate + nav */
+  .sticky-bar {
+    background: var(--fb-white);
+    border-top: 1px solid var(--fb-border);
+    border-bottom: 1px solid var(--fb-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 var(--fb-border);
+  }
+  .sticky-bar .container {
+    max-width: 1600px;
+    padding: 0 24px;
+  }
+  .sticky-row {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--fb-border);
+  }
+  .sticky-row:last-child { border-bottom: none; }
+  .sticky-row.objectives {
+    background: var(--fb-denim);
+    border-bottom: 2px solid var(--fb-red);
+  }
+  .sticky-row.objectives .sticky-label {
+    color: var(--fb-white);
+    border-right-color: rgba(255,255,255,0.18);
+  }
+  .sticky-row.objectives .obj-pill {
+    color: var(--fb-white);
+    border-right-color: rgba(255,255,255,0.12);
+  }
+  .sticky-row.objectives .obj-pill .pill-num {
+    color: var(--fb-red);
+    background: var(--fb-white);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .sticky-label {
+    flex-shrink: 0;
+    padding: 10px 18px 10px 20px;
+    min-width: 110px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-red);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--fb-border);
+    margin-right: 14px;
+  }
+  .sticky-row.nav { background: var(--fb-white); }
+  .sticky-row.nav .sticky-label {
+    color: var(--fb-text-muted);
+  }
+  .obj-pills {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+  .obj-pill {
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fb-black);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--fb-border);
+    line-height: 1.3;
+  }
+  .obj-pill:last-child { border-right: none; }
+  .obj-pill .pill-num {
+    font-weight: 700;
+    color: var(--fb-red);
+    margin-right: 6px;
+  }
+  .nav-items {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    overflow-x: auto;
+  }
+  .nav-items a {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: var(--fb-text);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-right: 1px solid var(--fb-border);
+    transition: background 0.12s;
+  }
+  .nav-items a:last-child { border-right: none; }
+  .nav-items a:hover { background: var(--fb-bg-soft); }
+  .nav-items a .nav-num {
+    color: var(--fb-red);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* SECTIONS */
+  section.body-section {
+    padding: 44px 0 48px;
+    background: var(--fb-white);
+    border-bottom: 1px solid var(--fb-border);
+  }
+  section.body-section.alt {
+    background: var(--fb-bg-soft);
+  }
+
+  /* Section heading — F&B pattern */
+  .section-head { margin-bottom: 26px; }
+  .section-block-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-head h2 {
+    font-family: var(--fb-font);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--fb-black);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .section-head .fb-rule {
+    border: 0;
+    height: 1.5px;
+    background: var(--fb-red);
+    margin: 0 0 12px;
+    width: 100%;
+  }
+  .section-head .subhead {
+    font-size: 14px;
+    color: var(--fb-text-muted);
+    max-width: 780px;
+    line-height: 1.55;
+  }
+
+  /* COHORT */
+  .cohort-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 6px;
+  }
+  .persona {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .persona .pname {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--fb-black);
+  }
+  .persona .prole {
+    font-size: 10px;
+    color: var(--fb-text-muted);
+    margin-top: 3px;
+    line-height: 1.3;
+    min-height: 26px;
+  }
+  .persona .pdevice {
+    font-size: 10px;
+    color: var(--fb-text);
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--fb-border);
+  }
+
+  /* SUBSECTION */
+  .subsection {
+    margin: 30px 0 14px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1.5px solid var(--fb-border);
+    padding-bottom: 6px;
+  }
+  .subsection h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fb-black);
+    letter-spacing: -0.005em;
+  }
+  .subsection .sub-desc {
+    font-size: 12px;
+    color: var(--fb-text-muted);
+    font-weight: 500;
+    margin-left: 14px;
+    flex: 1;
+  }
+
+  /* PATTERN CARD */
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .card {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    border-left: 3px solid var(--acc-heard);
+    padding: 16px 18px;
+    display: grid;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .card:hover {
+    background: var(--fb-bg-soft);
+    border-color: var(--fb-border-strong);
+    border-left-color: var(--fb-red);
+  }
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.3;
+  }
+  .freq {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-denim);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* 9-dot frequency */
+  .dotrow {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .dotrow .dot {
+    width: 11px;
+    height: 11px;
+    background: var(--fb-denim);
+  }
+  .dotrow .dot.empty {
+    background: var(--fb-white);
+    border: 1.5px solid var(--fb-slate);
+  }
+  .dotrow .lbl {
+    font-size: 11px;
+    color: var(--fb-text-muted);
+    margin-left: 6px;
+    font-weight: 600;
+  }
+
+  .visual {
+    background: var(--fb-bg-soft);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+  }
+  .visual svg { max-width: 100%; height: auto; }
+
+  .more-link {
+    font-size: 11px;
+    color: var(--fb-red);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .more-link::after {
+    content: " →";
+    transition: padding-left 0.12s;
+  }
+  .card:hover .more-link::after { padding-left: 4px; }
+
+  /* SPLIT CARDS — variations */
+  .split-card {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    border-left: 3px solid var(--acc-heard);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .split-card:hover {
+    background: var(--fb-bg-soft);
+    border-color: var(--fb-border-strong);
+    border-left-color: var(--fb-red);
+  }
+  .split-card .split-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+  .split-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.3;
+  }
+  .split-bar {
+    display: flex;
+    height: 28px;
+    margin-bottom: 10px;
+    border: 1px solid var(--fb-border);
+  }
+  .split-bar > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fb-white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .split-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .split-meta .col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .split-meta .label {
+    font-weight: 700;
+    color: var(--fb-black);
+    font-size: 12px;
+  }
+  .split-meta .who {
+    color: var(--fb-text-muted);
+    font-size: 11px;
+  }
+  .split-meta .what {
+    color: var(--fb-text);
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  /* PERSONA RECTANGLES — 3 in 1 */
+  .persona-frame {
+    background: var(--fb-white);
+    border: 2px solid var(--acc-heard);
+    padding: 14px;
+  }
+  .persona-frame-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--acc-heard);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .persona-frame-grid {
+    display: grid;
+    grid-template-columns: 3fr 3fr 2fr;
+    gap: 6px;
+  }
+  .persona-band {
+    padding: 12px 12px;
+    color: var(--fb-white);
+  }
+  .persona-band .band-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .persona-band .band-who {
+    font-size: 11px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    opacity: 0.95;
+  }
+  .persona-band .band-what {
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+  .persona-band.b1 { background: var(--fb-citron); color: var(--fb-black); }
+  .persona-band.b2 { background: var(--fb-denim); }
+  .persona-band.b3 { background: var(--fb-plum); }
+  .persona-context {
+    font-size: 11px;
+    color: var(--fb-text-muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--fb-border-strong);
+    line-height: 1.5;
+  }
+  .persona-takeaway {
+    background: var(--fb-black);
+    color: var(--fb-white);
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* SIGNALS WORTH HOLDING — three groups */
+  .signal-group {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .signal-group.g-build { border-top: 4px solid var(--fb-citron); }
+  .signal-group.g-shape { border-top: 4px solid var(--fb-plum); }
+  .signal-group.g-future { border-top: 4px solid var(--fb-slate); }
+
+  .signal-group-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--fb-border);
+    gap: 14px;
+  }
+  .signal-group-head .sg-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .signal-group.g-build .sg-title { color: var(--fb-black); }
+  .signal-group.g-shape .sg-title { color: var(--fb-plum); }
+  .signal-group.g-future .sg-title { color: var(--fb-text-muted); }
+
+  .signal-group-head .sg-desc {
+    font-size: 12px;
+    color: var(--fb-text-muted);
+    flex: 1;
+  }
+  .signal-group-head .sg-count {
+    font-size: 11px;
+    color: var(--fb-text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* Build group — clickable tiles with prominent name */
+  .signal-tiles-build {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .build-tile {
+    background: var(--fb-bg-soft);
+    border-left: 3px solid var(--fb-citron);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .build-tile:hover {
+    background: #eef0e6;
+    border-left-color: var(--fb-red);
+  }
+  .build-tile .sig-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .build-tile .sig-who {
+    font-size: 11px;
+    color: var(--fb-text-muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .build-tile .sig-action {
+    font-size: 11px;
+    color: var(--fb-red);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .build-tile .sig-action::after {
+    content: " →";
+  }
+
+  /* Shape group — radically different: input → influence */
+  .shape-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .shape-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 10px;
+    align-items: stretch;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--fb-border);
+  }
+  .shape-row:last-child { border-bottom: none; }
+  .shape-input {
+    background: var(--fb-white);
+    border-left: 3px solid var(--fb-plum);
+    padding: 12px 14px;
+  }
+  .shape-input .si-attr {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-plum);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .shape-input .si-signal {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.4;
+  }
+  .shape-input .si-signal em {
+    font-style: italic;
+    color: var(--fb-plum);
+    font-weight: 600;
+  }
+  .shape-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fb-red);
+    font-weight: 700;
+    font-size: 22px;
+  }
+  .shape-arrow::before {
+    content: "shapes";
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fb-text-muted);
+    margin-right: 4px;
+  }
+  .shape-decision {
+    background: var(--fb-bg-soft);
+    border-right: 3px solid var(--fb-citron);
+    padding: 12px 14px;
+    text-align: right;
+  }
+  .shape-decision .sd-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-citron);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .shape-decision .sd-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.4;
+  }
+
+  /* Future group — minimal tiles */
+  .signal-tiles-future {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .future-tile {
+    padding: 12px 14px;
+    background: var(--fb-bg-soft);
+    border-left: 2px solid var(--fb-slate);
+  }
+  .future-tile .sig-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+  .future-tile .sig-who {
+    font-size: 10px;
+    color: var(--fb-text-muted);
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .future-tile .sig-note {
+    font-size: 11px;
+    color: var(--fb-text);
+    line-height: 1.45;
+  }
+
+  /* CLIENT CHECK-IN — bright Citron callout asking for client take */
+  .client-checkin {
+    background: var(--fb-citron);
+    color: var(--fb-black);
+    padding: 26px 30px;
+    margin: 18px 0 8px;
+    border-left: 6px solid var(--fb-red);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: start;
+  }
+  .client-checkin .ck-mark {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--fb-red);
+    padding-top: 2px;
+  }
+  .client-checkin .ck-headline {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .client-checkin .ck-body {
+    font-size: 15px;
+    color: var(--fb-black);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .client-checkin .ck-body strong { font-weight: 700; }
+  .client-checkin .ck-body p + p { margin-top: 8px; }
+
+  /* WHAT TOOL WILL NOT DO — F&B red foundation */
+  .nodo-intro {
+    font-size: 13px;
+    color: var(--fb-text-muted);
+    margin-bottom: 14px;
+    max-width: 780px;
+  }
+  .nodo-wall {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    background: var(--fb-red-dark);
+    padding: 3px;
+  }
+  .nodo-brick {
+    background: var(--fb-red);
+    color: var(--fb-white);
+    padding: 18px 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 88px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    position: relative;
+  }
+  .nodo-brick:hover {
+    background: var(--fb-red-dark);
+    transform: scale(1.02);
+  }
+  .nodo-brick::after {
+    content: "+";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0.7;
+  }
+  .nodo-brick .x {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    opacity: 0.9;
+  }
+  .nodo-brick .nodo-text {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .nodo-foundation-label {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--fb-text-muted);
+    font-style: italic;
+  }
+
+  /* WHAT WE PLAN TO DO — 5 cards, text-forward */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .plan-card {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    border-left: 3px solid var(--fb-citron);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .plan-card:hover {
+    background: var(--fb-bg-soft);
+    border-color: var(--fb-border-strong);
+    border-left-color: var(--fb-red);
+  }
+  .plan-card .plan-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 10px;
+  }
+  .plan-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.3;
+  }
+  .plan-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-red);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .plan-text {
+    font-size: 13px;
+    color: var(--fb-text);
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .plan-why {
+    font-size: 12px;
+    color: var(--fb-text-muted);
+    background: var(--fb-bg-soft);
+    padding: 8px 12px;
+    border-left: 2px solid var(--fb-citron);
+    line-height: 1.5;
+  }
+  .plan-why strong {
+    color: var(--fb-black);
+    font-weight: 700;
+  }
+  .plan-why .obj-ref {
+    color: var(--fb-red);
+    font-weight: 700;
+  }
+
+  /* BLOCK 4 — questions, large with smaller suggestion */
+  .question-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .question-card {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    padding: 22px 26px;
+    border-top: 4px solid var(--fb-plum);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .question-card .q-num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--fb-plum);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    min-width: 50px;
+  }
+  .question-card .q-body { display: block; }
+  .question-card .q-text {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .question-card .q-rec {
+    border-top: 1px solid var(--fb-border);
+    padding-top: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .question-card .q-rec-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-plum);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .question-card .q-rec-text {
+    font-size: 13px;
+    color: var(--fb-text);
+    line-height: 1.55;
+  }
+
+  .question-banner {
+    background: var(--fb-bg-soft);
+    border-left: 3px solid var(--fb-plum);
+    padding: 14px 20px;
+    margin-bottom: 18px;
+  }
+  .question-banner .qb-text {
+    font-size: 13px;
+    color: var(--fb-text);
+    line-height: 1.55;
+  }
+  .question-banner strong {
+    color: var(--fb-black);
+    font-weight: 700;
+  }
+
+  /* BLOCK 4b — decisions, large with "moving on" framing */
+  .decision-banner {
+    background: var(--fb-denim);
+    color: var(--fb-white);
+    padding: 14px 20px;
+    margin-bottom: 18px;
+  }
+  .decision-banner .db-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-citron);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .decision-banner .db-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .decision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .decision-card {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    border-top: 3px solid var(--fb-denim);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  .decision-card:hover {
+    border-top-color: var(--fb-red);
+    border-color: var(--fb-red);
+    transform: translateY(-1px);
+  }
+  .decision-card .d-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--fb-white);
+    background: var(--fb-denim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-bottom: 8px;
+  }
+  .decision-card .d-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .decision-card .d-text strong {
+    color: var(--fb-red);
+  }
+  .decision-card .d-more {
+    font-size: 10px;
+    color: var(--fb-red);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .decision-card .d-more::after {
+    content: "→";
+    transition: transform 0.15s;
+  }
+  .decision-card:hover .d-more::after {
+    transform: translateX(2px);
+  }
+
+  /* WHAT'S NEXT */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .step {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    border-top: 3px solid var(--fb-slate);
+    padding: 16px 18px;
+  }
+  .step .step-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-slate);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .step .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fb-black);
+    margin-bottom: 10px;
+  }
+  .step ul {
+    font-size: 12px;
+    color: var(--fb-text);
+    list-style: none;
+    line-height: 1.55;
+  }
+  .step ul li {
+    padding-left: 12px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .step ul li::before {
+    content: "·";
+    position: absolute;
+    left: 4px;
+    color: var(--fb-slate);
+    font-weight: 700;
+  }
+  .rhythm-callout {
+    background: var(--fb-white);
+    border: 1px solid var(--fb-border);
+    padding: 14px 20px;
+    margin-top: 14px;
+    border-left: 3px solid var(--fb-red);
+  }
+  .rhythm-callout .label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .rhythm-callout .text {
+    font-size: 13px;
+    color: var(--fb-text);
+    line-height: 1.55;
+  }
+
+  /* FOOTER */
+  footer.fb-footer {
+    padding: 24px 0;
+    background: var(--fb-white);
+    border-top: 0.5px solid var(--fb-smoke);
+  }
+  footer.fb-footer .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11px;
+    color: var(--fb-black);
+  }
+  footer.fb-footer .firm {
+    font-weight: 700;
+  }
+  footer.fb-footer .tagline {
+    font-style: italic;
+    color: var(--fb-text-muted);
+    font-size: 12px;
+  }
+
+  /* MODAL */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal.open { display: flex; }
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+  }
+  .modal-content {
+    position: relative;
+    background: var(--fb-white);
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 0;
+    border-top: 4px solid var(--fb-red);
+  }
+  .modal-inner {
+    padding: 28px 32px 32px;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--fb-text-muted);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 10;
+  }
+  .modal-close:hover {
+    background: var(--fb-bg-soft);
+    color: var(--fb-black);
+  }
+  .modal-content .m-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    margin-bottom: 12px;
+    background: var(--fb-bg-soft);
+    color: var(--fb-text-muted);
+  }
+  .modal-content .m-tag.tag-recommend {
+    background: rgba(156, 175, 67, 0.15);
+    color: #6f7d2d;
+  }
+  .modal-content .m-tag.tag-build {
+    background: rgba(156, 175, 67, 0.15);
+    color: #6f7d2d;
+  }
+  .modal-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--fb-black);
+    line-height: 1.25;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .modal-content .modal-rule {
+    border: 0;
+    height: 1.5px;
+    background: var(--fb-red);
+    margin: 0 0 18px;
+  }
+
+  /* THE PRIMARY "WHY IT MATTERS" — top, bold, larger */
+  .m-primary {
+    background: var(--fb-bg-soft);
+    border-left: 3px solid var(--fb-red);
+    padding: 14px 18px;
+    margin-bottom: 18px;
+  }
+  .m-primary-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fb-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .m-primary p {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--fb-black);
+    line-height: 1.5;
+  }
+  .m-primary p + p { margin-top: 8px; }
+  .m-primary strong { font-weight: 700; }
+
+  /* SUPPORTING SECTIONS */
+  .m-supporting {
+    font-size: 13px;
+    color: var(--fb-text);
+    line-height: 1.6;
+  }
+  .m-supporting p + p { margin-top: 10px; }
+  .m-supporting strong { color: var(--fb-black); font-weight: 700; }
+  .m-section {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--fb-border);
+  }
+  .m-section:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .m-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fb-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .m-quote {
+    background: var(--fb-bg-soft);
+    padding: 10px 14px;
+    border-left: 3px solid var(--fb-smoke);
+    font-size: 13px;
+    color: var(--fb-text);
+    font-style: italic;
+    line-height: 1.55;
+    margin: 8px 0;
+  }
+  .m-quote .src {
+    display: block;
+    font-style: normal;
+    color: var(--fb-text-muted);
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* SVG STYLES — geometric, no emoji */
+  .v-text {
+    font-family: var(--fb-font);
+    font-size: 11px;
+    fill: var(--fb-text);
+    font-weight: 600;
+  }
+  .v-text-sm {
+    font-family: var(--fb-font);
+    font-size: 9px;
+    fill: var(--fb-text-muted);
+    font-weight: 500;
+  }
+  .v-text-bold {
+    font-family: var(--fb-font);
+    font-size: 11px;
+    fill: var(--fb-black);
+    font-weight: 700;
+  }
+  .v-text-white {
+    font-family: var(--fb-font);
+    font-size: 11px;
+    fill: var(--fb-white);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .objectives-big { grid-template-columns: repeat(2, 1fr); }
+    .cohort-grid { grid-template-columns: repeat(3, 1fr); }
+    .pattern-grid, .plan-grid, .decision-grid, .signal-tiles-build { grid-template-columns: 1fr; }
+    .signal-tiles-future { grid-template-columns: 1fr; }
+    .nodo-wall { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+    .persona-frame-grid { grid-template-columns: 1fr; }
+    .shape-row { grid-template-columns: 1fr; gap: 6px; }
+    .shape-arrow { padding: 4px 0; }
+    .question-card { grid-template-columns: 1fr; }
+    .question-card .q-num { font-size: 24px; min-width: auto; }
+    .sticky-row.objectives { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO HEADER -->
+<header class="hero">
+  <div class="container">
+    <h1>F&amp;B Email Triage — Phase 1 Kickoff</h1>
+    <hr class="fb-rule"/>
+    <p class="meta">Cyclotron + Fredrikson &amp; Byron  |  12-week pilot  |  Phase 1 Kickoff</p>
+  </div>
+</header>
+
+<!-- MANDATE HERO — large, prominent -->
+<section class="mandate-hero">
+  <div class="container">
+    <div class="mandate-label">Project Mandate</div>
+    <p class="mandate-thesis">
+      Four pilot objectives in the SOW. Every design call traces back to one of them. <strong>AI proposes; attorneys decide.</strong>
+    </p>
+    <div class="objectives-big">
+      <div class="objective-big">
+        <div class="obj-num">Objective 1</div>
+        <div class="obj-title">Improve attorney triage efficiency</div>
+        <div class="obj-desc">Distinguish client-related, actionable, and informational email.</div>
+      </div>
+      <div class="objective-big">
+        <div class="obj-num">Objective 2</div>
+        <div class="obj-title">Reduce risk of missed follow-ups</div>
+        <div class="obj-desc">Visibility and safety-net mechanisms so nothing drops silently.</div>
+      </div>
+      <div class="objective-big">
+        <div class="obj-num">Objective 3</div>
+        <div class="obj-title">Increase filing consistency</div>
+        <div class="obj-desc">Without automatic or speculative filing. Every action attorney-initiated.</div>
+      </div>
+      <div class="objective-big">
+        <div class="obj-num">Objective 4</div>
+        <div class="obj-title">Preserve attorney trust</div>
+        <div class="obj-desc">Through explicit, user-initiated actions. The tool earns its place in the workflow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY COMBINED BAR -->
+<nav class="sticky-bar">
+  <div class="container">
+    <div class="sticky-row objectives">
+      <div class="sticky-label">Mandate</div>
+      <div class="obj-pills">
+        <div class="obj-pill"><span class="pill-num">1</span>Triage efficiency</div>
+        <div class="obj-pill"><span class="pill-num">2</span>Reduce missed follow-ups</div>
+        <div class="obj-pill"><span class="pill-num">3</span>Filing consistency</div>
+        <div class="obj-pill"><span class="pill-num">4</span>Preserve attorney trust</div>
+      </div>
+    </div>
+    <div class="sticky-row nav">
+      <div class="sticky-label">Agenda</div>
+      <div class="nav-items">
+        <a href="#where-we-are"><span class="nav-num">1</span>Where we are</a>
+        <a href="#what-we-heard"><span class="nav-num">2</span>What we heard</a>
+        <a href="#what-we-plan"><span class="nav-num">3</span>What we plan to do</a>
+        <a href="#where-we-need-you"><span class="nav-num">4</span>Where we need you</a>
+        <a href="#whats-next"><span class="nav-num">5</span>What's next</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 1. WHERE WE ARE ============ -->
+<section class="body-section" id="where-we-are">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-block-label">1 · Where we are</div>
+      <h2>The cohort we listened to</h2>
+      <hr class="fb-rule"/>
+      <p class="subhead">9 attorneys.  6 practices.  4 mail clients.  Inbox volumes from 70 to 105,000.</p>
+    </div>
+
+    <div class="cohort-grid">
+      <div class="persona"><div class="pname">Norah</div><div class="prole">CLOO</div><div class="pdevice">Apple Mail</div></div>
+      <div class="persona"><div class="pname">Brusven</div><div class="prole">Regulatory · EC</div><div class="pdevice">Android</div></div>
+      <div class="persona"><div class="pname">Yevzelman</div><div class="prole">Tax Disputes · Board</div><div class="pdevice">Apple Mail</div></div>
+      <div class="persona"><div class="pname">Snelson</div><div class="prole">M&amp;A · EC</div><div class="pdevice">iPhone Outlook</div></div>
+      <div class="persona"><div class="pname">Mills</div><div class="prole">Litigation · AI Liaison</div><div class="pdevice">Desktop primary</div></div>
+      <div class="persona"><div class="pname">Maddy</div><div class="prole">Practice Manager</div><div class="pdevice">iPhone Outlook</div></div>
+      <div class="persona"><div class="pname">Hatcher</div><div class="prole">Employment Co-Chair</div><div class="pdevice">Samsung</div></div>
+      <div class="persona"><div class="pname">Cassioppi</div><div class="prole">Litigation · Board</div><div class="pdevice">Apple Mail</div></div>
+      <div class="persona"><div class="pname">Z. Olson</div><div class="prole">M&amp;A PE</div><div class="pdevice">iPhone Outlook</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. WHAT WE HEARD ============ -->
+<section class="body-section alt" id="what-we-heard">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-block-label">2 · What we heard</div>
+      <h2>The discovery in three layers</h2>
+      <hr class="fb-rule"/>
+      <p class="subhead">What every attorney showed us. The variations across the cohort. The signals worth holding for the build. Click any card for more detail.</p>
+    </div>
+
+    <!-- 2A: PATTERNS EVERYWHERE -->
+    <div class="subsection">
+      <h3>2A · What every attorney showed us</h3>
+      <div class="sub-desc">Patterns we saw across all 9 sessions</div>
+    </div>
+
+    <div class="pattern-grid">
+
+      <div class="card" onclick="openModal('m-sender')">
+        <div class="card-header">
+          <h4>Sender is the dominant triage signal</h4>
+          <span class="freq">8 of 9</span>
+        </div>
+        <div class="dotrow">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot empty"></div>
+        </div>
+        <div class="visual">
+          <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+            <text x="20" y="22" class="v-text">Sender</text>
+            <rect x="80" y="11" width="180" height="14" fill="#2C3154"/>
+            <text x="20" y="52" class="v-text">Subject</text>
+            <rect x="80" y="41" width="80" height="14" fill="#8B97AD"/>
+            <text x="20" y="82" class="v-text">Content</text>
+            <rect x="80" y="71" width="40" height="14" fill="#BFBAA4"/>
+          </svg>
+        </div>
+        <span class="more-link">More</span>
+      </div>
+
+      <div class="card" onclick="openModal('m-worksurface')">
+        <div class="card-header">
+          <h4>Email is the work surface</h4>
+          <span class="freq">9 of 9</span>
+        </div>
+        <div class="dotrow">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="visual">
+          <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="60" height="22" fill="white" stroke="#8B97AD" stroke-width="1"/>
+            <text x="40" y="25" text-anchor="middle" class="v-text-sm">Teams</text>
+            <rect x="10" y="40" width="60" height="22" fill="white" stroke="#8B97AD" stroke-width="1"/>
+            <text x="40" y="55" text-anchor="middle" class="v-text-sm">DMS</text>
+            <rect x="10" y="70" width="60" height="22" fill="white" stroke="#8B97AD" stroke-width="1"/>
+            <text x="40" y="85" text-anchor="middle" class="v-text-sm">To Do</text>
+            <path d="M 70 21 L 175 50" stroke="#8B97AD" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+            <path d="M 70 51 L 175 50" stroke="#8B97AD" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+            <path d="M 70 81 L 175 50" stroke="#8B97AD" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+            <rect x="180" y="30" width="90" height="40" fill="#2C3154"/>
+            <text x="225" y="55" text-anchor="middle" class="v-text-white">Inbox</text>
+            <defs>
+              <marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#8B97AD"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <span class="more-link">More</span>
+      </div>
+
+      <div class="card" onclick="openModal('m-overwhelm')">
+        <div class="card-header">
+          <h4>Post-meeting overwhelm</h4>
+          <span class="freq">9 of 9</span>
+        </div>
+        <div class="dotrow">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="visual">
+          <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="70" x2="260" y2="70" stroke="#8B97AD" stroke-width="1"/>
+            <rect x="20" y="60" width="40" height="10" fill="#BFBAA4"/>
+            <text x="40" y="88" text-anchor="middle" class="v-text-sm">9 AM</text>
+            <rect x="65" y="50" width="80" height="20" fill="#8B97AD"/>
+            <text x="105" y="63" text-anchor="middle" class="v-text-sm" fill="white">In meeting</text>
+            <rect x="150" y="20" width="50" height="50" fill="#2C3154"/>
+            <text x="175" y="40" text-anchor="middle" class="v-text-white" font-size="13">+50</text>
+            <text x="175" y="55" text-anchor="middle" class="v-text-sm" fill="white">emails</text>
+            <text x="175" y="88" text-anchor="middle" class="v-text-sm">11 AM</text>
+            <text x="225" y="48" text-anchor="middle" class="v-text-bold" fill="#E31B23" font-size="20">?</text>
+            <text x="240" y="68" text-anchor="middle" class="v-text-sm">now what</text>
+          </svg>
+        </div>
+        <span class="more-link">More</span>
+      </div>
+
+      <div class="card" onclick="openModal('m-filingdone')">
+        <div class="card-header">
+          <h4>Filing happens at "done"</h4>
+          <span class="freq">9 of 9</span>
+        </div>
+        <div class="dotrow">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="visual">
+          <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="35" width="55" height="30" fill="#BFBAA4"/>
+            <text x="32" y="54" text-anchor="middle" class="v-text">Receive</text>
+            <path d="M 60 50 L 75 50" stroke="#8B97AD" stroke-width="1.5" marker-end="url(#arr2)"/>
+            <rect x="78" y="35" width="45" height="30" fill="#BFBAA4"/>
+            <text x="100" y="54" text-anchor="middle" class="v-text">Work</text>
+            <path d="M 123 50 L 138 50" stroke="#8B97AD" stroke-width="1.5" marker-end="url(#arr2)"/>
+            <rect x="141" y="30" width="60" height="40" fill="#2C3154"/>
+            <text x="171" y="48" text-anchor="middle" class="v-text-white">DONE</text>
+            <text x="171" y="62" text-anchor="middle" class="v-text-sm" fill="#BFBAA4">human</text>
+            <path d="M 201 50 L 216 50" stroke="#8B97AD" stroke-width="1.5" marker-end="url(#arr2)"/>
+            <rect x="219" y="35" width="55" height="30" fill="#9CAF43"/>
+            <text x="246" y="54" text-anchor="middle" class="v-text-bold" fill="white">File</text>
+            <defs>
+              <marker id="arr2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+                <path d="M0,0 L5,2.5 L0,5 Z" fill="#8B97AD"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <span class="more-link">More</span>
+      </div>
+
+      <div class="card" onclick="openModal('m-mobilebroken')">
+        <div class="card-header">
+          <h4>Mobile triage core, mobile filing broken</h4>
+          <span class="freq">8 of 9</span>
+        </div>
+        <div class="dotrow">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot empty"></div>
+        </div>
+        <div class="visual">
+          <svg viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
+            <text x="100" y="14" class="v-text-bold">Triage</text>
+            <text x="180" y="14" class="v-text-bold">File</text>
+            <text x="20" y="40" class="v-text">Phone</text>
+            <text x="20" y="78" class="v-text">Desktop</text>
+            <rect x="90" y="26" width="50" height="20" fill="#9CAF43"/>
+            <text x="115" y="40" text-anchor="middle" class="v-text-white">9 of 9</text>
+            <rect x="170" y="26" width="50" height="20" fill="#E31B23"/>
+            <text x="195" y="40" text-anchor="middle" class="v-text-white">3 of 9*</text>
+            <rect x="90" y="64" width="50" height="20" fill="#9CAF43"/>
+            <text x="115" y="78" text-anchor="middle" class="v-text-white">9 of 9</text>
+            <rect x="170" y="64" width="50" height="20" fill="#9CAF43"/>
+            <text x="195" y="78" text-anchor="middle" class="v-text-white">9 of 9</text>
+            <text x="20" y="103" class="v-text-sm">* Z. Olson cleanly. Yevzelman + Snelson try, often fail.</text>
+          </svg>
+        </div>
+        <span class="more-link">More</span>
+      </div>
+
+      <div class="card" onclick="openModal('m-aisuggester')">
+        <div class="card-header">
+          <h4>AI suggests, attorney decides</h4>
+          <span class="freq">9 of 9</span>
+        </div>
+        <div class="dotrow">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="visual">
+          <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="35" width="60" height="32" fill="#BFBAA4"/>
+            <text x="40" y="55" text-anchor="middle" class="v-text-bold">AI</text>
+            <text x="100" y="20" text-anchor="middle" class="v-text-sm">proposes</text>
+            <path d="M 72 51 L 124 51" stroke="#8B97AD" stroke-width="1.5" marker-end="url(#arr3)"/>
+            <rect x="126" y="25" width="78" height="52" fill="#2C3154"/>
+            <text x="165" y="48" text-anchor="middle" class="v-text-white">Attorney</text>
+            <text x="165" y="64" text-anchor="middle" class="v-text-sm" fill="#BFBAA4">decides</text>
+            <text x="232" y="20" text-anchor="middle" class="v-text-sm">action</text>
+            <path d="M 206 51 L 256 51" stroke="#8B97AD" stroke-width="1.5" marker-end="url(#arr3)"/>
+            <rect x="258" y="35" width="58" height="32" fill="#9CAF43"/>
+            <text x="287" y="55" text-anchor="middle" class="v-text-white">File</text>
+            <text x="160" y="100" text-anchor="middle" class="v-text-sm">Human is in the loop on every action</text>
+            <defs>
+              <marker id="arr3" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+                <path d="M0,0 L5,2.5 L0,5 Z" fill="#8B97AD"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <span class="more-link">More</span>
+      </div>
+
+    </div>
+
+    <!-- 2B: VARIATIONS -->
+    <div class="subsection">
+      <h3>2B · The variations we noticed</h3>
+      <div class="sub-desc">Splits across the cohort the design has to absorb</div>
+    </div>
+
+    <div class="split-card" onclick="openModal('m-mobile-coverage')">
+      <div class="split-head">
+        <h4>Mobile add-in coverage. 4 of 9 are add-in-blind on mobile.</h4>
+        <span class="more-link">More</span>
+      </div>
+      <div class="split-bar">
+        <div style="width: 33%; background: #E31B23;">Apple Mail · 3</div>
+        <div style="width: 11%; background: #830053;">Android · 1</div>
+        <div style="width: 56%; background: #2C3154;">Outlook iOS · 5</div>
+      </div>
+      <div class="split-meta">
+        <div class="col">
+          <span class="label">Cannot use add-in pane</span>
+          <span class="who">Norah · Yevzelman · Cassioppi · Brusven</span>
+        </div>
+        <div class="col">
+          <span class="label">Add-in available</span>
+          <span class="who">Snelson · Mills · Maddy · Hatcher · Z. Olson</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-card" onclick="openModal('m-aiposture')">
+      <div class="split-head">
+        <h4>AI adoption posture. Three personas in the cohort.</h4>
+        <span class="more-link">More</span>
+      </div>
+      <div class="persona-frame">
+        <div class="persona-frame-label">7 active users grouped into 3 personas</div>
+        <div class="persona-frame-grid">
+          <div class="persona-band b1">
+            <div class="band-name">Pragmatic</div>
+            <div class="band-who">Cassioppi · Snelson · Z. Olson</div>
+            <div class="band-what">Tolerant of ~10% error for net efficiency</div>
+          </div>
+          <div class="persona-band b2">
+            <div class="band-name">Trust-but-verify</div>
+            <div class="band-who">Mills · Brusven · Hatcher</div>
+            <div class="band-what">Wants persistent visibility into every action</div>
+          </div>
+          <div class="persona-band b3">
+            <div class="band-name">Wants full visibility</div>
+            <div class="band-who">Yevzelman</div>
+            <div class="band-what">Show-everything baseline; nothing hidden</div>
+          </div>
+        </div>
+        <div class="persona-context">
+          Plus 2 context voices. <strong>Norah</strong> is the executive sponsor and CLOO. Not a primary user. <strong>Maddy</strong> is the practice manager. Provides cross-practice synthesis and associate context.
+        </div>
+      </div>
+      <div class="persona-takeaway">One default won't serve all three</div>
+    </div>
+
+    <div class="split-card" onclick="openModal('m-multirole')">
+      <div class="split-head">
+        <h4>Multi-role overload. 5 of 9 carry committee or board load on top of practice.</h4>
+        <span class="more-link">More</span>
+      </div>
+      <div class="split-bar">
+        <div style="width: 56%; background: #2C3154;">Multi-role · 5</div>
+        <div style="width: 44%; background: #BFBAA4; color: #000000;">Practice-only · 4</div>
+      </div>
+      <div class="split-meta">
+        <div class="col">
+          <span class="label">EC, board, or committee</span>
+          <span class="who">Brusven · Snelson · Cassioppi · Yevzelman · Mills</span>
+        </div>
+        <div class="col">
+          <span class="label">Practice-only</span>
+          <span class="who">Norah · Zach · Hatcher · Maddy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-card" onclick="openModal('m-threading')">
+      <div class="split-head">
+        <h4>Conversation threading. Some can't live without it. Others can't stand it.</h4>
+        <span class="more-link">More</span>
+      </div>
+      <div class="split-bar">
+        <div style="width: 44%; background: #9CAF43;">Threading on · 4</div>
+        <div style="width: 22%; background: #E31B23;">Off · 2</div>
+        <div style="width: 34%; background: #BFBAA4; color: #000000;">Mixed · 3</div>
+      </div>
+      <div class="split-meta">
+        <div class="col">
+          <span class="label">Couldn't live without it</span>
+          <span class="who">Maddy · Yevzelman · Z. Olson · Mills</span>
+        </div>
+        <div class="col">
+          <span class="label">Actively dislike it</span>
+          <span class="who">Hatcher · Snelson</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-card" onclick="openModal('m-deadlines')">
+      <div class="split-head">
+        <h4>Time-based deadlines. Litigator-relevant, not universal.</h4>
+        <span class="more-link">More</span>
+      </div>
+      <div class="split-bar">
+        <div style="width: 22%; background: #2C3154;">Court email · 2</div>
+        <div style="width: 56%; background: #8B97AD;">No email deadlines · 5</div>
+        <div style="width: 22%; background: #BFBAA4; color: #000000;">N/A · 2</div>
+      </div>
+      <div class="split-meta">
+        <div class="col">
+          <span class="label">Court-emitted streams</span>
+          <span class="who">Mills · Cassioppi (+ IP attorneys, not yet in cohort)</span>
+        </div>
+        <div class="col">
+          <span class="label">No court deadlines via email</span>
+          <span class="who">Snelson · Z. Olson · Brusven · Yevzelman · Hatcher</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2C: SIGNALS WORTH HOLDING -->
+    <div class="subsection">
+      <h3>2C · Signals worth holding</h3>
+      <div class="sub-desc">Each came from 1 or 2 attorneys. We held them because they can be real in future builds.</div>
+    </div>
+
+    <!-- Group 1: Heading into the build -->
+    <div class="signal-group g-build">
+      <div class="signal-group-head">
+        <span class="sg-title">Heading into the build</span>
+        <span class="sg-desc">Features going into the pilot. Click any tile for context on what each one means.</span>
+        <span class="sg-count">4 features</span>
+      </div>
+      <div class="signal-tiles-build">
+        <div class="build-tile" onclick="openModal('m-build-unflag')">
+          <div class="sig-name">Unflag-and-file prompt</div>
+          <div class="sig-who">Brusven</div>
+          <div class="sig-action">What this means</div>
+        </div>
+        <div class="build-tile" onclick="openModal('m-build-courtalerts')">
+          <div class="sig-name">Court alerts into the digest, with a party-side filter</div>
+          <div class="sig-who">Mills</div>
+          <div class="sig-action">What this means</div>
+        </div>
+        <div class="build-tile" onclick="openModal('m-build-colorrules')">
+          <div class="sig-name">AI replicates self-built color rules</div>
+          <div class="sig-who">Z. Olson</div>
+          <div class="sig-action">What this means</div>
+        </div>
+        <div class="build-tile" onclick="openModal('m-build-showall')">
+          <div class="sig-name">Show-everything baseline view</div>
+          <div class="sig-who">Yevzelman</div>
+          <div class="sig-action">What this means</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Group 2: Shaping the design and architecture - radically different visual -->
+    <div class="signal-group g-shape">
+      <div class="signal-group-head">
+        <span class="sg-title">Voices that shape the design and architecture</span>
+        <span class="sg-desc">These five attorneys' input directly drives a specific design or architecture decision.</span>
+        <span class="sg-count">5 inputs → 5 decisions</span>
+      </div>
+      <div class="shape-flow">
+        <div class="shape-row">
+          <div class="shape-input">
+            <div class="si-attr">Norah</div>
+            <div class="si-signal"><em>"If it's in Teams, we lose people."</em></div>
+          </div>
+          <div class="shape-arrow">→</div>
+          <div class="shape-decision">
+            <div class="sd-label">Design decision</div>
+            <div class="sd-text">Build inside Outlook only. No standalone surfaces.</div>
+          </div>
+        </div>
+        <div class="shape-row">
+          <div class="shape-input">
+            <div class="si-attr">Cassioppi</div>
+            <div class="si-signal">10% AI error tolerance. Explicit.</div>
+          </div>
+          <div class="shape-arrow">→</div>
+          <div class="shape-decision">
+            <div class="sd-label">KPI design</div>
+            <div class="sd-text">Sets one end of the configurability range. Yevzelman sets the other.</div>
+          </div>
+        </div>
+        <div class="shape-row">
+          <div class="shape-input">
+            <div class="si-attr">Maddy</div>
+            <div class="si-signal">Calendar-as-task workflow. Drag emails into appointments.</div>
+          </div>
+          <div class="shape-arrow">→</div>
+          <div class="shape-decision">
+            <div class="sd-label">Reference workflow</div>
+            <div class="sd-text">Microsoft To Do integration covers the underlying need.</div>
+          </div>
+        </div>
+        <div class="shape-row">
+          <div class="shape-input">
+            <div class="si-attr">Mills</div>
+            <div class="si-signal">Confidential matter. AI access boundary unclear.</div>
+          </div>
+          <div class="shape-arrow">→</div>
+          <div class="shape-decision">
+            <div class="sd-label">Architecture decision</div>
+            <div class="sd-text">Per-matter exclusions in the categorization engine.</div>
+          </div>
+        </div>
+        <div class="shape-row">
+          <div class="shape-input">
+            <div class="si-attr">Brusven</div>
+            <div class="si-signal">Her Legal Administrative Assistant (LAA) sees her calendar but not her inbox — deliberately, because of EC-sensitive email.</div>
+          </div>
+          <div class="shape-arrow">→</div>
+          <div class="shape-decision">
+            <div class="sd-label">RBAC architecture</div>
+            <div class="sd-text">Phase 2 permission model honors calendar-yes / inbox-no delegation partitions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Group 3: Held for what comes next -->
+    <div class="signal-group g-future">
+      <div class="signal-group-head">
+        <span class="sg-title">Held for what comes next</span>
+        <span class="sg-desc">Heard, logged, and parked. Out of pilot scope.</span>
+        <span class="sg-count">3 future-state</span>
+      </div>
+      <div class="signal-tiles-future">
+        <div class="future-tile">
+          <div class="sig-name">Off-hours push for high-urgency</div>
+          <div class="sig-who">Hatcher</div>
+          <div class="sig-note">Push beyond Outlook is out of pilot scope.</div>
+        </div>
+        <div class="future-tile">
+          <div class="sig-name">Detect direct asks buried in threads</div>
+          <div class="sig-who">Snelson</div>
+          <div class="sig-note">Evidence is thin (3 of 9). Revisit if workshops show broader signal.</div>
+        </div>
+        <div class="future-tile">
+          <div class="sig-name">Tone scanning for inbound urgency</div>
+          <div class="sig-who">Yevzelman</div>
+          <div class="sig-note">Possible quiet input to priority scoring rather than a visible category.</div>
+        </div>
+      </div>
+
+      <div class="client-checkin">
+        <div class="ck-mark">?</div>
+        <div>
+          <div class="ck-headline">Do you agree with these calls? Tell us if anything here should move.</div>
+          <div class="ck-body">
+            <p>For example, <strong>tone scanning</strong> isn't a heavy lift on the build side, but it isn't required for the pilot to launch either. It could be the kind of "fun" feature that gets attorneys more excited about the tool early on. If you think we should reach for one of these, say so — we'll work it back into scope.</p>
+            <p>Same goes the other direction. If something in the pilot scope feels like it should drop here instead, that's a conversation worth having today.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2D -->
+    <div class="subsection">
+      <h3>2D · What the tool will NOT do</h3>
+      <div class="sub-desc">Anti-requirements. The foundation of trust.</div>
+    </div>
+    <p class="nodo-intro">These hold across every design decision and every phase. Together they form the structural foundation. Every brick load-bearing.</p>
+    <div class="nodo-wall">
+      <div class="nodo-brick" onclick="openModal('m-anti-1')"><div class="x">✗</div><div class="nodo-text">Automatic filing</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-2')"><div class="x">✗</div><div class="nodo-text">Silent matter inference</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-3')"><div class="x">✗</div><div class="nodo-text">New surfaces to monitor</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-4')"><div class="x">✗</div><div class="nodo-text">Silent actions of any kind</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-5')"><div class="x">✗</div><div class="nodo-text">Forced thread collapse</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-6')"><div class="x">✗</div><div class="nodo-text">Personal voice replacement</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-7')"><div class="x">✗</div><div class="nodo-text">Confidential matters without consent</div></div>
+      <div class="nodo-brick" onclick="openModal('m-anti-8')"><div class="x">✗</div><div class="nodo-text">Data outside F&amp;B's tenant</div></div>
+    </div>
+    <p class="nodo-foundation-label">The floor underneath everything else</p>
+
+  </div>
+</section>
+
+<!-- ============ 3. WHAT WE PLAN TO DO ============ -->
+<section class="body-section" id="what-we-plan">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-block-label">3 · What we plan to do</div>
+      <h2>Five calls we're making for the build</h2>
+      <hr class="fb-rule"/>
+      <p class="subhead">Informed by what attorneys told us. Paired with our take on what works. Each one ties back to a mandate objective. Click any card for the longer reasoning.</p>
+    </div>
+
+    <div class="plan-grid">
+
+      <div class="plan-card" onclick="openModal('m-rec-primitives')">
+        <div class="plan-head">
+          <h4>Build inside Outlook only</h4>
+          <span class="plan-tag">Obj 1, 4</span>
+        </div>
+        <div class="plan-text">Categories, flags, and Microsoft To Do as the surface. No add-in dependency for anything that needs to work on mobile.</div>
+        <div class="plan-why"><strong>Why.</strong> 4 of 9 attorneys cannot use the add-in pane on mobile. 3 are on Apple Mail. 1 is on Android. Categories and flags propagate to all of them through Exchange. <span class="obj-ref">Mandate: triage efficiency, attorney trust.</span></div>
+      </div>
+
+      <div class="plan-card" onclick="openModal('m-rec-sender')">
+        <div class="plan-head">
+          <h4>Make sender a primary feature in the model</h4>
+          <span class="plan-tag">Obj 1</span>
+        </div>
+        <div class="plan-text">The model treats sender identity as a top-level input alongside subject and content. Per-sender pattern learning from day one.</div>
+        <div class="plan-why"><strong>Why.</strong> 8 of 9 attorneys triage sender-first. The model has to align with how attorneys already think. <span class="obj-ref">Mandate: triage efficiency.</span></div>
+      </div>
+
+      <div class="plan-card" onclick="openModal('m-rec-attorney-init')">
+        <div class="plan-head">
+          <h4>Keep every action attorney-initiated</h4>
+          <span class="plan-tag">Obj 3, 4</span>
+        </div>
+        <div class="plan-text">Filing, archive, deletion, response. Every one needs an attorney's click before it happens.</div>
+        <div class="plan-why"><strong>Why.</strong> 9 of 9 attorneys converged on this when asked about guardrails. The principle is in the SOW and empirically validated. <span class="obj-ref">Mandate: filing consistency, attorney trust.</span></div>
+      </div>
+
+      <div class="plan-card" onclick="openModal('m-rec-config')">
+        <div class="plan-head">
+          <h4>Make AI behavior configurable per attorney</h4>
+          <span class="plan-tag">Obj 1, 4</span>
+        </div>
+        <div class="plan-text">Default settings plus opt-up and opt-down. Cadence, category aggressiveness, and notification thresholds tunable per attorney.</div>
+        <div class="plan-why"><strong>Why.</strong> 3 distinct AI postures across 7 active users. Plus 5 different digest cadence preferences. One default won't serve everyone. <span class="obj-ref">Mandate: triage efficiency, attorney trust.</span></div>
+      </div>
+
+      <div class="plan-card" onclick="openModal('m-rec-exclusions')">
+        <div class="plan-head">
+          <h4>Support per-matter exclusions in the engine</h4>
+          <span class="plan-tag">Obj 4</span>
+        </div>
+        <div class="plan-text">Attorneys can opt specific matters, clients, or categories out of AI processing entirely. The exclusion is honored at the engine level, not as a post-hoc filter.</div>
+        <div class="plan-why"><strong>Why.</strong> Mills surfaced one matter with this need. The same concern likely applies in employment, government investigation, and high-profile work. The architecture has to support it from Phase 2. <span class="obj-ref">Mandate: attorney trust.</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. WHERE WE NEED YOU ============ -->
+<section class="body-section alt" id="where-we-need-you">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-block-label">4 · Where we need you</div>
+      <h2>Five questions for the workshops ahead</h2>
+      <hr class="fb-rule"/>
+      <p class="subhead">Questions that need your input before architecture is locked.</p>
+    </div>
+
+    <div class="question-banner">
+      <div class="qb-text">
+        <strong>On owners and timelines.</strong> We'll lock owners and dates as we hear who's best placed to lead each thread. Today is about getting the questions on the table and confirming we're solving the right ones.
+      </div>
+    </div>
+
+    <div class="question-grid">
+
+      <div class="question-card">
+        <div class="q-num">Q1</div>
+        <div class="q-body">
+          <div class="q-text">When an attorney has a matter so confidential that AI access raises real concerns, what's the right way to opt that thread out of categorization — at the matter level, the client level, or by category?</div>
+          <div class="q-rec">
+            <div class="q-rec-label">Our thinking</div>
+            <div class="q-rec-text">Per-matter exclusion as the default, with a per-category fallback for sensitive practice areas like government investigations and personnel work. The exclusion is honored at the engine level, so the model never sees the content at all.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-num">Q2</div>
+        <div class="q-body">
+          <div class="q-text">Some attorneys' Legal Administrative Assistants (LAAs) have access to their calendar but not their inbox — Brusven, for example, draws this wall because of EC-sensitive email. Does the system's permission model need to honor that partition, and which other attorneys share it?</div>
+          <div class="q-rec">
+            <div class="q-rec-label">Our thinking</div>
+            <div class="q-rec-text">Yes, the architecture has to handle calendar-yes / inbox-no. Snelson, Cassioppi, and Yevzelman all sit on EC or Board and likely share the pattern, but it hasn't been verified. Phase 1 architecture workshop with Brent confirms.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-num">Q3</div>
+        <div class="q-body">
+          <div class="q-text">The discovery cohort is shareholders only — no IP attorney and no associate, both of whom we expect to behave differently from what we've heard. Who should we add to the pilot, and when?</div>
+          <div class="q-rec">
+            <div class="q-rec-label">Our thinking</div>
+            <div class="q-rec-text">One IP attorney and one associate added before architecture is locked, with brief delta-discovery sessions to surface practice-specific signals (docketing patterns for IP, supervisor-as-client dynamics for associates).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-num">Q4</div>
+        <div class="q-body">
+          <div class="q-text">Five different cadence preferences came out of discovery — real-time nudges, mid-day, end-of-day, no-nudges, weekly. Should we launch with one default and tune from there, or stagger by attorney from day one?</div>
+          <div class="q-rec">
+            <div class="q-rec-label">Our thinking</div>
+            <div class="q-rec-text">End-of-day default at launch. Per-attorney cadence preference surfaced in the first tuning conversation. Simpler to launch, easier to measure baseline, gives attorneys an immediate visible decision point.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-num">Q5</div>
+        <div class="q-body">
+          <div class="q-text">Three attorneys are on Apple Mail iOS. Categories, flags, and To Do should propagate through Exchange, but the propagation behavior in F&amp;B's specific tenant has never been tested end-to-end. Can we run a quick technical validation before architecture is locked?</div>
+          <div class="q-rec">
+            <div class="q-rec-label">Our thinking</div>
+            <div class="q-rec-text">Brent runs a tenant-side test: create a category, apply to a test email, confirm it appears on Apple Mail iOS. Same for flag and To Do. If propagation fails, the design adjusts before Phase 2 starts.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4b. CALLS WE'RE MAKING NOW ============ -->
+<section class="body-section" id="moving-on">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-block-label">4b · Calls we're making now</div>
+      <h2>Decisions we're proceeding on</h2>
+      <hr class="fb-rule"/>
+    </div>
+
+    <div class="decision-banner">
+      <div class="db-label">How to read this section</div>
+      <div class="db-text">These are decisions we're making based on the discovery and our analysis. We're moving on them now. Have an opinion? Tell us. We'll adjust.</div>
+    </div>
+
+    <div class="decision-grid">
+      <div class="decision-card" onclick="openModal('m-dec-1')">
+        <div class="d-tag">Decision 1</div>
+        <div class="d-text">Categories, flags, and Microsoft To Do are the surface set.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-2')">
+        <div class="d-tag">Decision 2</div>
+        <div class="d-text">Starting taxonomy: <strong>client work</strong>, internal firm work, informational, noise.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-3')">
+        <div class="d-tag">Decision 3</div>
+        <div class="d-text">Sender is a top-level feature in the model. Per-sender learning from day one.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-4')">
+        <div class="d-tag">Decision 4</div>
+        <div class="d-text">Per-attorney configuration is built into the architecture. Not bolted on later.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-5')">
+        <div class="d-tag">Decision 5</div>
+        <div class="d-text">Show-everything view available from day one as a baseline.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-6')">
+        <div class="d-tag">Decision 6</div>
+        <div class="d-text">Mark Complete &amp; File picks up the unflag event as a completion signal.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-7')">
+        <div class="d-tag">Decision 7</div>
+        <div class="d-text">Categorization works thread-aware. Display follows the attorney's preference.</div>
+        <span class="d-more">What this means</span>
+      </div>
+      <div class="decision-card" onclick="openModal('m-dec-8')">
+        <div class="d-tag">Decision 8</div>
+        <div class="d-text">Weekend backlog cleanup time is tracked as a pilot KPI alongside the SOW criteria.</div>
+        <span class="d-more">What this means</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. WHAT'S NEXT ============ -->
+<section class="body-section alt" id="whats-next">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-block-label">5 · What's next</div>
+      <h2>Phase 1 path forward</h2>
+      <hr class="fb-rule"/>
+      <p class="subhead">This is our current thinking coming into the meeting. We see the major steps looking like this at the moment — push back on any of it today and we'll adjust.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-label">Step One</div>
+        <div class="step-title">Workshops kick off</div>
+        <ul>
+          <li>Confidential matter exclusion</li>
+          <li>LAA (Legal Administrative Assistant) delegation partition</li>
+          <li>Category taxonomy review</li>
+          <li>Apple Mail tenant validation begins</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="step-label">Step Two</div>
+        <div class="step-title">Specs converge</div>
+        <ul>
+          <li>Pilot cohort closure (IP + associate)</li>
+          <li>Digest spec working session</li>
+          <li>Filing action spec + Mark Complete</li>
+          <li>Baseline KPI definitions</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="step-label">Step Three</div>
+        <div class="step-title">Phase 1 wraps, Phase 2 starts</div>
+        <ul>
+          <li>Phase 1 closeout — decisions documented</li>
+          <li>Phase 2 architecture kicks off</li>
+          <li>Delta discovery — IP attorney and associate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rhythm-callout">
+      <div class="label">Rhythm continues throughout</div>
+      <div class="text">Monday week-ahead plan. Wednesday midweek pulse. Friday week-end wrap. Anything material between workshops shows up in the next email. Never in a meeting first.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="fb-footer">
+  <div class="container">
+    <div class="footer-row">
+      <span><span class="firm">Fredrikson &amp; Byron, P.A.</span>  |  Email Triage Pilot  |  Phase 1 Kickoff</span>
+      <span class="tagline">Where Law and Business Meet&reg;</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODALS ============ -->
+
+<div class="modal" id="m-sender">
+  <div class="modal-overlay" onclick="closeModal('m-sender')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-sender')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Universal pattern · 8 of 9</span>
+      <h3>Sender is the dominant triage signal</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Categorization that reasons primarily from email content will feel foreign to attorneys. The model has to align with how attorneys already think.</p>
+        <p><strong>Per-sender pattern learning is the highest-leverage capability.</strong> Brusven's mental "I know Jared's emails go to this client" mapping is exactly what the system should learn automatically.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">How it showed up</div>
+          <p>Mills, Norah, Snelson, Brusven, Yevzelman, Cassioppi, Hatcher, Z. Olson all triage by sender first. Maddy implied through her search behavior.</p>
+          <p>Z. Olson built Outlook color rules to highlight sole-recipient and key-sender emails. He engineered his own version of sender-first triage because he needed it for two large West Coast sponsor clients driving heavy deal volume.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-worksurface">
+  <div class="modal-overlay" onclick="closeModal('m-worksurface')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-worksurface')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Universal pattern · 9 of 9</span>
+      <h3>Email is the work surface</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>No new aggregation surfaces. No standalone client app. No panels that compete with the inbox. The tool meets attorneys where they already are.</p>
+        <p>This is also the basis for resisting any future scope expansion that would move attorneys out of Outlook.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">The clearest articulation</div>
+          <div class="m-quote">If that has to be like over in Teams, we're gonna lose a bunch of people because they won't go over there and look.<span class="src">Norah</span></div>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">How it showed up</div>
+          <p>Every attorney described email as the place their work lives. Where it's queued, prioritized, started, and frequently finished. Nobody said anything resembling "I move things out of email and work somewhere else."</p>
+          <p>Snelson at 60,000 inbox items. Cassioppi at 105,000. Brusven at 9,400. These aren't unmanaged piles. They're the attorneys' work surface.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-overwhelm">
+  <div class="modal-overlay" onclick="closeModal('m-overwhelm')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-overwhelm')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Universal pattern · 9 of 9</span>
+      <h3>Post-meeting overwhelm</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The daily digest isn't for the steady-state inbox. It's for the post-meeting reset.</p>
+        <p>Different scenario. Different design priorities. The digest spec optimizes for "I just got back, what did I miss" rather than "my morning routine."</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">How attorneys described it</div>
+          <p>Mills came out of a long hearing to 48 emails and the immediate stress of inbox-zero discipline colliding with reality. Yevzelman: constant bombardment. Zach: 100 emails in an hour as not unusual.</p>
+          <p>Hatcher described the post-meeting return as a recurring friction point. Maddy heard the same pattern from the attorneys she supports. Important emails buried two-thirds down a 40-email return queue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-filingdone">
+  <div class="modal-overlay" onclick="closeModal('m-filingdone')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-filingdone')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Universal pattern · 9 of 9</span>
+      <h3>Filing happens at "done"</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The filing trigger is human-judged. Never AI-judged.</p>
+        <p>The system can detect signals of completion. Unflagging. Replied-and-not-followed-up. No new activity for N days. But the attorney decides.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Norah's anchor</div>
+          <div class="m-quote">I would never move anything over into a folder until I was done with it. Like I would never have pending work over in the folder.<span class="src">Norah</span></div>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">The variation in "done" semantics</div>
+          <p>Norah anchored "done" as substantive-work-concluded. <strong>Brusven uses unflagging as her trigger</strong> and proposed an unflag-and-file prompt as her single most valuable feature.</p>
+          <p>Cassioppi: "done is it's been addressed." A looser bar. Maddy treats filing as separate from completion entirely. The semantics vary. The principle is identical.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-mobilebroken">
+  <div class="modal-overlay" onclick="closeModal('m-mobilebroken')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-mobilebroken')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Universal pattern · 8 of 9</span>
+      <h3>Mobile triage core, mobile filing broken</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The filing UI is desktop-anchored. Mobile filing where it works is a bonus, not a baseline.</p>
+        <p>Categories, flags, and To Do propagate across every device through Exchange. That keeps the mobile experience coherent without depending on an add-in that 4 of 9 attorneys can't access anyway.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Who actually files from mobile</div>
+          <p><strong>Z. Olson</strong> is the only consistent mobile-filer. Outlook on iOS, files cleanly.</p>
+          <p><strong>Yevzelman</strong> tries from Apple Mail when the prediction guesses correctly. Abandons the phone the moment it gets the matter wrong. <strong>Snelson</strong> files from Outlook iOS but has fat-finger misfile problems.</p>
+          <p>The other 6 attorneys avoid filing from mobile entirely. Hatcher doesn't trust how she sees email on the small screen. Norah on Apple Mail has no DMS access. Brusven on Android calls it clunky. Cassioppi rarely tries.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-aisuggester">
+  <div class="modal-overlay" onclick="closeModal('m-aisuggester')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-aisuggester')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Universal pattern · 9 of 9</span>
+      <h3>AI suggests, attorney decides</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>This is the SOW's governing principle. It's also empirically validated across the cohort.</p>
+        <p>It's the basis for resisting any future scope expansion that would have AI act on its own. Even pragmatic adopters like Cassioppi tolerate a 10% error rate <strong>because they're checking</strong>. Not because the system gets to act unilaterally.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Norah's articulation</div>
+          <div class="m-quote">Moving things without me clicking a button that said OK would be too far. I wouldn't want things to disappear without me knowing.<span class="src">Norah</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-mobile-coverage">
+  <div class="modal-overlay" onclick="closeModal('m-mobile-coverage')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-mobile-coverage')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Cohort variation · 4 of 9 add-in-blind</span>
+      <h3>Mobile add-in coverage</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The add-in pane is desktop-only for 4 of 9 attorneys.</p>
+        <p>Categories, flags, and To Do propagate to Apple Mail iOS and Android through Exchange. Anything that depends on the add-in is invisible to 44% of the cohort during their non-desktop time.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Why each chose Apple Mail</div>
+          <p>Norah is open to switching but hasn't yet. Cassioppi believes Apple Mail is the dominant phone-mail at the firm and isn't planning to change. Yevzelman finds the Outlook iOS app confusing for chains. She uses it only for meeting acceptances and Edge sign-on links.</p>
+          <p>The point isn't to convert them. It's to design around them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-aiposture">
+  <div class="modal-overlay" onclick="closeModal('m-aiposture')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-aiposture')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Cohort variation · 3 personas</span>
+      <h3>AI adoption posture</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Configurability of AI behavior is a pilot success factor. Not a polish item.</p>
+        <p>If attorneys can't tune from week one, the trust-but-verify and full-visibility personas churn before the categorization can prove itself. We're designing the per-attorney config layer into Phase 2 architecture rather than waiting for Phase 4 tuning.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Pragmatic · Cassioppi, Snelson, Z. Olson</div>
+          <p>Tolerant of error rates if net efficiency wins. Cassioppi explicitly: 10% error is fine because he's checking regardless. Want low-friction suggestions and fast adoption.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Trust-but-verify · Mills, Brusven, Hatcher</div>
+          <p>Want to review every action before it takes effect. Brusven's specific concern: she might stop checking a category she trusts and miss items. Need persistent visibility into AI categorization.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Wants full visibility · Yevzelman</div>
+          <p>Doesn't trust the existing focused inbox because she doesn't know what it's hiding. Wants AI nudges <strong>alongside</strong> all email. Not instead of it.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Plus two context voices</div>
+          <p><strong>Norah</strong> is the executive sponsor and CLOO. Her own words: "what we're building is not actually for me." <strong>Maddy</strong> is the practice manager. She sat in on the AI wishlist sessions and provides cross-practice synthesis and associate context. Their input shapes the design but they aren't placed in the user persona bands.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-multirole">
+  <div class="modal-overlay" onclick="closeModal('m-multirole')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-multirole')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Cohort variation · 5 of 9</span>
+      <h3>Multi-role overload</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The categorization taxonomy needs internal-firm-management as a first-class category alongside client work.</p>
+        <p>The post-meeting digest should be able to surface "what happened in EC while you were in court" as cleanly as "what happened with client X."</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Brusven's articulation</div>
+          <div class="m-quote">With my EC stuff, because some of the EC stuff's the stuff that's on fire. It's gotta be responded to in the hour or the whatever. I can't ignore those anymore.<span class="src">Brusven</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-threading">
+  <div class="modal-overlay" onclick="closeModal('m-threading')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-threading')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Cohort variation · 4 love · 2 reject</span>
+      <h3>Conversation threading divides the cohort</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Categorization, summarization, and digest features have to work thread-aware but display-agnostic.</p>
+        <p>Categorization logic operates at both message and thread level. Display preserves the attorney's existing preference. Forcing a thread-collapsed view fails for Hatcher and Snelson. Forcing a flat view fails for Maddy and Yevzelman.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Couldn't live without it (4 of 9)</div>
+          <p>Maddy: "I would not be able to function without that. If I had to search through for the individual emails on a chain, no." Yevzelman: "I couldn't live without it." Z. Olson called it "super helpful." Mills tries to use it.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Actively dislike it (2 of 9)</div>
+          <p>Hatcher: "I dislike it. I actually got a new phone recently and it defaulted to conversation threading and it was driving me absolutely crazy." Snelson: "When there's a conversation or multiple emails going on related to the same string, it just throws them all together in one place. And I find that really confusing."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-deadlines">
+  <div class="modal-overlay" onclick="closeModal('m-deadlines')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-deadlines')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag">Cohort variation · litigator-relevant</span>
+      <h3>Time-based deadlines have segmented value</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Court-emitted deadline surfacing is a litigator feature. Not a universal one.</p>
+        <p>The Phase 1 workshop on time-based surfacing should be litigator-led, with transactional and regulatory voice present to define what they don't want flooding their digest.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">The litigator pattern</div>
+          <p>Mills wants integration with the digest, plus party-side filtering. Government opposing parties don't drive her work the way private opposing parties do. Sophisticated logic specific to her white-collar regulatory practice.</p>
+          <p>Norah identified IP attorneys as having a parallel pattern. They file with patent and copyright agencies and have a docketing system analogous to litigation. <strong>IP is not yet in the cohort and needs to be added before architecture is locked.</strong></p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">The transactional and regulatory side</div>
+          <p>Hatcher explicitly declined the time-based reminder concept. "Wouldn't help me." Yevzelman: "No, I don't think so. No." Their deadlines come from regulators or deal timelines or simply aren't email-triggered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2C BUILD GROUP MODALS -->
+
+<div class="modal" id="m-build-unflag">
+  <div class="modal-overlay" onclick="closeModal('m-build-unflag')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-build-unflag')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-build">Heading into the build · Brusven</span>
+      <h3>Unflag-and-file prompt</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>This is the strongest single feature concept the discovery surfaced.</p>
+        <p>It lands in <strong>Mark Complete &amp; File</strong>, the SOW's filing flow that captures the moment an attorney signals a thread is done. Brusven's unflag is exactly that signal. The system catches it and offers the filing prompt right there.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">What "Mark Complete &amp; File" means</div>
+          <p>It's the SOW's name for the canonical filing action in the pilot. The attorney clicks a single control that does two things at once. It marks the email as complete (the work is done) and prompts the filing destination (where the email goes in iManage).</p>
+          <p>The unflag event becomes a second trigger for the same flow. When Brusven removes a flag, the system surfaces the filing prompt. She files in one click instead of going hunting for the email to drag it into a folder.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">What Brusven asked for</div>
+          <p>"It would be really great if when I unflag it, it gives me the option to file it." Twice in her session. She has 9,400 inbox items partly because once a flag comes off, the next step rarely happens. Closing that gap is high-leverage for her specifically and useful for any flag-driven attorney.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-build-courtalerts">
+  <div class="modal-overlay" onclick="closeModal('m-build-courtalerts')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-build-courtalerts')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-build">Heading into the build · Mills</span>
+      <h3>Court alerts into the digest, with party-side filter</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Litigators receive substantial volumes of court-emitted email that contain real deadlines buried in noise. Pulling those signals into the daily digest gives litigators a single place to see what's coming.</p>
+        <p>The party-side filter is the sophisticated piece. Government opposing parties don't drive Mills' white-collar regulatory work the way private opposing parties do. The categorization needs to know which side of the v. matters.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">What this looks like in practice</div>
+          <p>The system recognizes court alert emails by sender pattern. Extracts the deadline. Filters by case party. Surfaces the relevant ones in Mills' daily digest with backdated reminders configurable per attorney.</p>
+          <p>Phase 1 rules workshop designs the extraction and filter logic with Mills directly. Once the IP attorney joins the cohort, we validate the same approach against their docketing pattern.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-build-colorrules">
+  <div class="modal-overlay" onclick="closeModal('m-build-colorrules')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-build-colorrules')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-build">Heading into the build · Z. Olson</span>
+      <h3>AI replicates self-built color rules</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Z. Olson built his own categorization layer in Outlook because he couldn't manage his volume without one. The AI's job is to replicate what he built, automatically, for everyone.</p>
+        <p>This is the strongest validation in the cohort that visual relevance cues earn their keep.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">What he built</div>
+          <p>Conditional formatting rules in Outlook. Green for emails where he is the sole recipient. Italics for emails from a designated key sender. He engineered a pre-AI categorization layer to handle two large West Coast sponsor clients driving heavy deal volume.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">What the system delivers</div>
+          <p>The AI categorizes inbound email using sender, recipient list, subject, and content. The pilot's category indicators surface visually inside Outlook. Z. Olson's manual rules become a benchmark for the AI's accuracy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-build-showall">
+  <div class="modal-overlay" onclick="closeModal('m-build-showall')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-build-showall')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-build">Heading into the build · Yevzelman</span>
+      <h3>Show-everything baseline view</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Categorization has to be additive only. Never reductive.</p>
+        <p>Any user can toggle into a chronological-everything view at any time. The AI's category indicators layer on top of the inbox. They don't replace it. They don't hide anything.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">What Yevzelman asked for</div>
+          <p>"I just don't know if focus takes away certain things that I would think are important. I'd rather see it all. But I would like reminders, you know, like that's different where it's like you didn't do something."</p>
+          <p>Translation: AI nudges and category cues are welcome alongside her email. Anything that hides email from her is not.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Why this is foundational</div>
+          <p>It's not just Yevzelman. The trust-but-verify cohort (Mills, Brusven, Hatcher) needs persistent visibility into what's been categorized to maintain confidence in the system. Brusven articulated the failure mode directly. She might stop checking a category she trusts and miss items.</p>
+          <p>Show-everything as a baseline solves both. The skeptic gets the visibility she demands. The verifiers get the audit surface they need.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATION MODALS -->
+
+<div class="modal" id="m-rec-primitives">
+  <div class="modal-overlay" onclick="closeModal('m-rec-primitives')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-rec-primitives')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-recommend">What we plan to do</span>
+      <h3>Build inside Outlook only</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The tool meets attorneys where they already are.</p>
+        <p>No add-in dependency for anything that needs to work on mobile. The richer filing UI lives on desktop where 8 of 9 attorneys file anyway.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">The numbers</div>
+          <p><strong>4 of 9</strong> attorneys cannot use the Outlook add-in pane on mobile. 3 are on Apple Mail (Norah, Yevzelman, Cassioppi). 1 is on Android (Brusven). That's 44% of the cohort add-in-blind during their non-desktop hours.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">How it works in practice</div>
+          <p>Categories, flags, and Microsoft To Do propagate to every mail client and device through Exchange. Apple Mail iOS, Android Outlook, iPad, desktop. All see the same state. The richer filing UI lives on desktop.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Tied to mandate</div>
+          <p>Objectives 1 (triage efficiency) and 4 (attorney trust).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-rec-sender">
+  <div class="modal-overlay" onclick="closeModal('m-rec-sender')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-rec-sender')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-recommend">What we plan to do</span>
+      <h3>Make sender a primary feature in the model</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Categorization that ignores who-sent-it as a primary feature will feel foreign to how attorneys already think.</p>
+        <p>Per-sender pattern learning is high-leverage. If we build it well, Brusven's four-hour Saturday cleanup ritual shrinks materially.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">The numbers</div>
+          <p><strong>8 of 9</strong> attorneys triage sender-first. The 9th (Maddy) does the same in her search behavior. This isn't a stated preference. It's what every attorney showed us.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">The canonical example</div>
+          <p>Brusven's mental model: "I always file by person. I know Jared, I know exactly which client it goes to." That sender-to-client mapping is precisely what the system should learn automatically.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Tied to mandate</div>
+          <p>Objective 1 (triage efficiency).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-rec-attorney-init">
+  <div class="modal-overlay" onclick="closeModal('m-rec-attorney-init')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-rec-attorney-init')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-recommend">What we plan to do</span>
+      <h3>Keep every action attorney-initiated</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>The principle is in the SOW and empirically validated.</p>
+        <p>It's the basis for resisting any future scope expansion that would have AI act on its own. Even pragmatic adopters tolerate a 10% error rate <strong>because they're checking</strong>. Not because the system gets to act unilaterally.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">The numbers</div>
+          <p><strong>9 of 9</strong> attorneys converged here when asked about AI guardrails.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Norah's articulation</div>
+          <div class="m-quote">Moving things without me clicking a button that said OK would be too far. I wouldn't want things to disappear without me knowing.<span class="src">Norah</span></div>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Tied to mandate</div>
+          <p>Objectives 3 (filing consistency) and 4 (attorney trust). The two cannot exist without this.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-rec-config">
+  <div class="modal-overlay" onclick="closeModal('m-rec-config')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-rec-config')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-recommend">What we plan to do</span>
+      <h3>Make AI behavior configurable per attorney</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>Configurability is a pilot success factor. Not a polish item.</p>
+        <p>If attorneys can't tune from week one, the trust-but-verify and full-visibility personas churn before the categorization can prove itself. The per-attorney config layer goes into Phase 2 architecture, not into Phase 4 tuning.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">The numbers</div>
+          <p><strong>3 distinct AI postures</strong> across the 7 active users (pragmatic, trust-but-verify, full-visibility). Plus <strong>5 different digest cadence preferences</strong> (real-time, mid-day, end-of-day, skeptic-of-nudges, weekly review). One default fails at least 4 of 7 active users.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Tied to mandate</div>
+          <p>Objectives 1 (triage efficiency) and 4 (attorney trust).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-rec-exclusions">
+  <div class="modal-overlay" onclick="closeModal('m-rec-exclusions')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-rec-exclusions')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag tag-recommend">What we plan to do</span>
+      <h3>Support per-matter exclusions in the engine</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">Why it matters for the build</div>
+        <p>An engine-level exclusion means the model never sees the email in the first place.</p>
+        <p>That's materially different from a post-hoc filter. Post-hoc still sends content through the categorization model. From a security and trust standpoint, the difference matters. The architecture has to support per-matter exclusions from Phase 2.</p>
+      </div>
+      <div class="m-supporting">
+        <div class="m-section">
+          <div class="m-section-label">Where this came from</div>
+          <p>Mills surfaced one matter with confidentiality requirements that exclude even the firm's docketing system. Her words: "I haven't thought through the implications of, you know, if AI had access to my e-mail, what would happen with that confidential matter."</p>
+          <p>The unspoken concern almost certainly extends to other practices touching government investigations, sensitive personnel matters, and high-profile clients. Hatcher's employment work is a likely parallel.</p>
+        </div>
+        <div class="m-section">
+          <div class="m-section-label">Tied to mandate</div>
+          <p>Objective 4 (attorney trust). Granularity is a Phase 1 workshop decision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ANTI-REQUIREMENT MODALS (2D) ============ -->
+
+<div class="modal" id="m-anti-1">
+  <div class="modal-overlay" onclick="closeModal('m-anti-1')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-1')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Automatic filing</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>The system never moves an email into iManage on its own. The AI can detect signals that a thread looks complete (unflagging, replied-and-quiet, no new activity for N days) and surface a filing prompt. Acting on those signals silently is not allowed.</p>
+        <p>Every filing action touches an attorney's click before it happens.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-2">
+  <div class="modal-overlay" onclick="closeModal('m-anti-2')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-2')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Silent matter inference</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>The system never silently assigns an email to a client or matter on its own. Suggesting a folder is fine. Saving to one without the attorney's confirmation is not.</p>
+        <p>Misfiling is the most common pain attorneys raised across discovery. The tool's job is to make the right suggestion easy. The attorney still confirms.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-3">
+  <div class="modal-overlay" onclick="closeModal('m-anti-3')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-3')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>New surfaces to monitor</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>No new tabs, panels, folders, or apps that attorneys have to remember to check. The tool lives inside Outlook's existing surfaces — categories, flags, and Microsoft To Do. If something needs to surface to an attorney, it does so through tools they already see.</p>
+        <p>Norah's framing: "If it's in Teams, we lose people." The same logic applies to anything else outside Outlook.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-4">
+  <div class="modal-overlay" onclick="closeModal('m-anti-4')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-4')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Silent actions of any kind</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>AI proposes; the attorney decides. No move, send, archive, delete, or auto-reply happens without an explicit click. This is the SOW's governing principle and 9 of 9 attorneys converged on it independently in discovery.</p>
+        <p>Even pragmatic adopters like Cassioppi tolerate a 10% error rate because the system is making suggestions he checks. Not because the system gets to act on its own.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-5">
+  <div class="modal-overlay" onclick="closeModal('m-anti-5')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-5')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Forced thread collapse</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>Some attorneys live in conversation-threaded view (Maddy, Yevzelman, Z. Olson, Mills). Others find threading confusing and explicitly reject it (Hatcher, Snelson). The system never forces either preference. Categorization works at both message and thread level. Display follows whatever the attorney already uses.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-6">
+  <div class="modal-overlay" onclick="closeModal('m-anti-6')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-6')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Personal voice replacement</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>The firm's voice is a feature of client relationships, not friction to eliminate. We don't generate templated drafts that flatten an attorney's individual voice. If we offer drafting assistance, it preserves the attorney's tone rather than overwriting it.</p>
+        <p>Maddy raised this as a values-level concern. The pilot holds the line.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-7">
+  <div class="modal-overlay" onclick="closeModal('m-anti-7')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-7')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Confidential matters without consent</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>Attorneys can opt specific matters, clients, or categories out of AI processing entirely. The exclusion is honored at the engine level — the model never sees the excluded content at all.</p>
+        <p>Mills surfaced one matter where AI access raised concerns that hadn't been worked through. The exclusion mechanism extends to other practices likely to face the same — government investigations, sensitive personnel work, perception-sensitive clients.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-anti-8">
+  <div class="modal-overlay" onclick="closeModal('m-anti-8')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-anti-8')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #fde7e8; color: #B91219;">What the tool will NOT do</span>
+      <h3>Data outside F&amp;B's tenant</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>All AI processing stays inside F&amp;B's Microsoft 365 tenancy. No firm data is sent to external services, no cross-tenant calls, no third-party LLMs that aren't already covered by F&amp;B's enterprise agreements. Aligns with the SOW's RBAC and Entra ID posture.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DECISION MODALS (4b) ============ -->
+
+<div class="modal" id="m-dec-1">
+  <div class="modal-overlay" onclick="closeModal('m-dec-1')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-1')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 1</span>
+      <h3>Categories, flags, and Microsoft To Do are the surface set</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>The pilot's working surface is Outlook's universal tools: <strong>color-coded categories</strong>, <strong>follow-up flags</strong>, and <strong>Microsoft To Do tasks</strong>. These are the things attorneys (and where relevant, their LAAs) will see and act on. We're not building a new pane, tab, or app to monitor.</p>
+        <p>The tools propagate across every device and every mail client through Exchange — Apple Mail iOS, Android Outlook, iPad, desktop. Same state everywhere. The richer filing UI sits on desktop where 8 of 9 attorneys file anyway.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-2">
+  <div class="modal-overlay" onclick="closeModal('m-dec-2')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-2')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 2</span>
+      <h3>Starting taxonomy: client work, internal firm work, informational, noise</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What "taxonomy" means here</div>
+        <p>The categorization model needs a top-level structure that buckets every email into one of a few labels. The starting buckets we're working from:</p>
+        <p><strong>Client work</strong> — anything tied to a client matter. <strong>Internal firm work</strong> — committee, board, hiring, group management. <strong>Informational</strong> — newsletters, alerts, court bulletins. <strong>Noise</strong> — everything else.</p>
+        <p>The Phase 1 rules workshop refines these. Multi-role overload (5 of 9 attorneys carry committee or board work) is why "internal firm work" sits as its own bucket alongside client work, not lumped under "firm/admin."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-3">
+  <div class="modal-overlay" onclick="closeModal('m-dec-3')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-3')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 3</span>
+      <h3>Sender is a top-level feature in the model</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What "feature in the model" means</div>
+        <p>When the AI categorizes an email, it weighs multiple signals: the sender, the subject line, the body content, who else is on the email, when it arrived, and so on. Each of those is a "feature." We're saying <strong>sender weighs heavily</strong> — the model treats sender identity as a top-tier signal, not a secondary one.</p>
+        <p>"Per-sender learning from day one" means the system also learns each attorney's mappings: if Brusven always files emails from Jared into the Acme matter, the model picks up that pattern automatically over time. The mental model attorneys already use becomes the system's model.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-4">
+  <div class="modal-overlay" onclick="closeModal('m-dec-4')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-4')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 4</span>
+      <h3>Per-attorney configuration is built into the architecture</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What's configurable per attorney</div>
+        <p>Three things, from day one: <strong>digest cadence</strong> (when the daily digest arrives), <strong>category aggressiveness</strong> (how confident the model has to be before it surfaces a suggestion), and <strong>notification thresholds</strong> (what counts as "urgent enough to flag"). Attorneys get a default and can tune up or down.</p>
+        <p>"Built into the architecture" means we design the per-attorney config layer in Phase 2 rather than waiting until Phase 4 tuning. If we leave it for tuning, the trust-but-verify and visibility-first personas churn before the categorization can prove itself.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-5">
+  <div class="modal-overlay" onclick="closeModal('m-dec-5')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-5')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 5</span>
+      <h3>Show-everything view available from day one</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this looks like in practice</div>
+        <p>Any user can flip into a chronological-everything view at any time — full inbox, no filtering, no AI categorization layered on. Categorization is <strong>additive</strong>: it adds visual cues, prioritization, and digest entries on top of the underlying email. It never hides email.</p>
+        <p>Yevzelman is the most explicit voice on this, but the trust-but-verify users (Mills, Brusven, Hatcher) share the underlying concern. Show-all is the floor of trust.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-6">
+  <div class="modal-overlay" onclick="closeModal('m-dec-6')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-6')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 6</span>
+      <h3>Mark Complete &amp; File picks up the unflag event</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What "Mark Complete &amp; File" means</div>
+        <p>It's the explicit, attorney-initiated filing action the SOW commits us to building. When an attorney decides an email is done, they trigger one action and the system handles the file path to iManage with a folder suggestion the attorney confirms. No automatic moves. No silent matter inference.</p>
+        <p><strong>"Picks up the unflag event"</strong> means: when an attorney removes a flag, the system treats that as one of the natural triggers for Mark Complete &amp; File. The file-or-discard prompt surfaces. The attorney decides.</p>
+        <p>Brusven's discovery ask was the strongest single feature concept the cohort gave us. This is how it lands.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-7">
+  <div class="modal-overlay" onclick="closeModal('m-dec-7')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-7')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 7</span>
+      <h3>Categorization works thread-aware. Display follows the attorney's preference.</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What this means</div>
+        <p>Categorization logic operates at both the individual message level and the thread (conversation) level. Display follows the attorney's existing preference. If you have threading on, you'll see categories rolled up at the thread level. If you have threading off, you'll see categories per-message.</p>
+        <p>The system never forces either view. Hatcher and Snelson keep their flat view. Maddy and Yevzelman keep their threaded view. The category indicators work in both.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-dec-8">
+  <div class="modal-overlay" onclick="closeModal('m-dec-8')"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('m-dec-8')">×</button>
+    <div class="modal-inner">
+      <span class="m-tag" style="background: #e7e9f0; color: #2C3154;">Decision 8</span>
+      <h3>Weekend backlog cleanup time is tracked as a pilot KPI</h3>
+      <hr class="modal-rule"/>
+      <div class="m-primary">
+        <div class="m-primary-label">What gets measured</div>
+        <p>Five of nine attorneys spend evening or weekend hours catching up on email — what Brusven called her "Saturday cleanup ritual." Several others described similar patterns.</p>
+        <p>We track the change in that time per attorney through the pilot, alongside the four SOW success criteria (adoption, triage efficiency, filing consistency, follow-up reduction). If the tool works, this number goes down. Self-reported at intake and exit, with optional check-ins at the midpoint.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(id) {
+    var m = document.getElementById(id);
+    if (m) {
+      m.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal(id) {
+    var m = document.getElementById(id);
+    if (m) {
+      m.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var openModals = document.querySelectorAll('.modal.open');
+      openModals.forEach(function(m) { m.classList.remove('open'); });
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+</body>
+</html>
